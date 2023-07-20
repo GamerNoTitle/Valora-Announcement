@@ -1,0 +1,40 @@
+name: Test Deploy to LeanEngine
+
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+
+  pull_request:
+    branches: [ master ]
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install lean-cli
+        run: |
+          wget --quiet -O lean https://github.com/leancloud/lean-cli/releases/download/v1.0.0/lean-linux-x64
+          sudo mv lean /usr/local/bin/lean
+          chmod a+x /usr/local/bin/lean 
+
+      - name: Login
+        env:
+          TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: lean login --region us-w1 --token "$TOKEN"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Connect
+        env:
+          APPID: ${{ secrets.PYTHON_FLASK_CI }}
+        run: lean switch --region US --group web "$APPID"
+
+      - name: Deploy
+        run: lean deploy --prod
+    
