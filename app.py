@@ -1,6 +1,7 @@
 # coding: utf-8
 import sys
 import os
+import yaml
 from datetime import datetime
 
 import leancloud
@@ -13,6 +14,9 @@ from views.todos import todos_view
 
 app = Flask(__name__)
 sockets = Sockets(app)
+babel = Babel(app)
+app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 
 # routing
 app.register_blueprint(todos_view, url_prefix='/todos')
@@ -20,7 +24,23 @@ app.register_blueprint(todos_view, url_prefix='/todos')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if request.args.get('lang'):
+        if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
+            lang = request.args.get('lang')
+        elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+            lang = str(request.accept_languages.best_match(
+                app.config['BABEL_LANGUAGES']))
+        else:
+            lang = 'en'
+    elif request.accept_languages.best_match(app.config['BABEL_LANGUAGES']):
+        lang = str(request.accept_languages.best_match(
+            app.config['BABEL_LANGUAGES']))
+    else:
+        lang = 'en'
+    with open(f'lang/{lang}.yml', encoding='utf8') as f:
+        transtable = f.read()
+
+    return render_template('index.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
 
 
 @app.route('/time')
