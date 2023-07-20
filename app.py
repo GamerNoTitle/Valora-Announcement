@@ -7,7 +7,6 @@ from flask_babel import Babel
 import leancloud
 from flask import Flask, jsonify, request
 from flask import render_template
-from flask_sockets import Sockets
 from leancloud import LeanCloudError
 
 app = Flask(__name__)
@@ -51,9 +50,9 @@ def print_version():
 def add_panel():
     render_template('add.html')
 
-@app.route('/api/add')
+@app.route('/api/add', methods=['POST'])
 def add_api():
-    content = request.form.get('content')
+    en, zh_CN, zh_TW, ja_JP = request.form.get('en'), request.form.get('zh_CN'), request.form.get('zh_TW'), request.form.get('ja_JP')
     token = request.form.get('token')
     if token == os.environ.get('TOKEN'):
         pass

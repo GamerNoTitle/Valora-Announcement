@@ -186,7 +186,7 @@
                 <div class="col-md-6 w-100">
                   <label>English</label>
                   <div class="input-group mb-4">
-                    <textarea class="form-control" placeholder="" name="en" type="text"></textarea>
+                    <textarea class="form-control" placeholder="" name="en" type="text" id="en"></textarea>
                   </div>
                 </div>
               </div>
@@ -195,7 +195,7 @@
                 <div class="col-md-6 w-100">
                   <label>简体中文</label>
                   <div class="input-group mb-4">
-                    <textarea class="form-control" placeholder="" name="zh_CN" type="text"></textarea>
+                    <textarea class="form-control" placeholder="" name="zh_CN" type="text" id="zh_CN"></textarea>
                   </div>
                 </div>
               </div>
@@ -203,7 +203,7 @@
                 <div class="col-md-6 w-100">
                   <label>繁體中文</label>
                   <div class="input-group mb-4">
-                    <textarea class="form-control" placeholder="" name="zh_TW" type="text"></textarea>
+                    <textarea class="form-control" placeholder="" name="zh_TW" type="text" id="zh_TW"></textarea>
                   </div>
                 </div>
               </div>
@@ -211,7 +211,15 @@
                 <div class="col-md-6 w-100">
                   <label>日本語</label>
                   <div class="input-group mb-4">
-                    <textarea class="form-control" placeholder="" name="ja_JP" type="text"></textarea>
+                    <textarea class="form-control" placeholder="" name="ja_JP" type="text" id="ja_JP"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 w-100">
+                  <label>Token</label>
+                  <div class="input-group mb-4">
+                    <input class="form-control" placeholder="" name="token" type="text" id="token"></input>
                   </div>
                 </div>
               </div>
@@ -405,32 +413,37 @@
     }
   </script>
   <script>
-    // Function to check if all textareas are non-empty
-    function checkTextareas() {
-      const textareas = document.querySelectorAll('textarea'); // Get all textareas
+    // 获取所有的textarea和"Token"输入框元素
+    const enTextarea = document.getElementById('en');
+    const zhCNTextarea = document.getElementById('zh_CN');
+    const zhTWTextarea = document.getElementById('zh_TW');
+    const jaJPTextarea = document.getElementById('ja_JP');
+    const tokenInput = document.getElementById('token');
+    const submitButton = document.getElementById('submit');
+
+    // 检查所有表单字段是否都非空的函数
+    function checkFormFields() {
+      const textareas = [enTextarea, zhCNTextarea, zhTWTextarea, jaJPTextarea];
+
       for (const textarea of textareas) {
         if (textarea.value.trim() === '') {
-          return false; // If any textarea is empty, return false
+          return false;
         }
       }
-      return true; // All textareas are non-empty, return true
+
+      return tokenInput.value.trim() !== '';
     }
 
-    // Function to toggle the submit button state
+    // 切换提交按钮状态的函数
     function toggleSubmitButtonState() {
-      const submitButton = document.getElementById('submit');
-      if (checkTextareas()) {
-        submitButton.removeAttribute('disabled'); // Enable the submit button
-      } else {
-        submitButton.setAttribute('disabled', 'disabled'); // Disable the submit button
-      }
+      submitButton.disabled = !checkFormFields();
     }
 
-    // Add event listeners to all textareas
-    const textareas = document.querySelectorAll('textarea');
-    for (const textarea of textareas) {
-      textarea.addEventListener('input', toggleSubmitButtonState);
-    }
+    // 添加事件监听器
+    const formFields = [enTextarea, zhCNTextarea, zhTWTextarea, jaJPTextarea, tokenInput];
+    formFields.forEach(field => {
+      field.addEventListener('input', toggleSubmitButtonState);
+    });
   </script>
 
 </body>
