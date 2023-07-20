@@ -92,7 +92,7 @@
           <div class="container-fluid px-0">
             <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip"
               title="VLR | Valora: What it is in my VALORANT Store TODAY??" data-placement="bottom">
-              Valora
+              Valora Announcement Management System
             </a>
             <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
               <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
@@ -195,8 +195,7 @@
                 <div class="col-md-6 w-100">
                   <label>简体中文</label>
                   <div class="input-group mb-4">
-                    <textarea class="form-control" placeholder="" name="zh_CN"
-                      type="text"></textarea>
+                    <textarea class="form-control" placeholder="" name="zh_CN" type="text"></textarea>
                   </div>
                 </div>
               </div>
@@ -204,8 +203,7 @@
                 <div class="col-md-6 w-100">
                   <label>繁體中文</label>
                   <div class="input-group mb-4">
-                    <textarea class="form-control" placeholder="" name="zh_TW"
-                      type="text"></textarea>
+                    <textarea class="form-control" placeholder="" name="zh_TW" type="text"></textarea>
                   </div>
                 </div>
               </div>
@@ -213,22 +211,21 @@
                 <div class="col-md-6 w-100">
                   <label>日本語</label>
                   <div class="input-group mb-4">
-                    <textarea class="form-control" placeholder="" name="ja_JP"
-                      type="text"></textarea>
+                    <textarea class="form-control" placeholder="" name="ja_JP" type="text"></textarea>
                   </div>
                 </div>
               </div>
-                    <div class="col-md-12">
-                      <button type="submit" class="btn bg-gradient-dark w-100" id="submit" disabled><img
-                          src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.global.button.submit}}</button>
-                    </div>
-                  </div>
-                </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn bg-gradient-dark w-100" id="submit" disabled><img
+                    src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.global.button.submit}}</button>
               </div>
-          </form>
-
+            </div>
         </div>
       </div>
+      </form>
+
+    </div>
+    </div>
     </div>
 
   </section>
@@ -405,6 +402,34 @@
     if (!domain.endsWith('bili33.top')) {
       // 如果不符合要求，则隐藏元素
       document.getElementById('icp').style.display = 'none';
+    }
+  </script>
+  <script>
+    // Function to check if all textareas are non-empty
+    function checkTextareas() {
+      const textareas = document.querySelectorAll('textarea'); // Get all textareas
+      for (const textarea of textareas) {
+        if (textarea.value.trim() === '') {
+          return false; // If any textarea is empty, return false
+        }
+      }
+      return true; // All textareas are non-empty, return true
+    }
+
+    // Function to toggle the submit button state
+    function toggleSubmitButtonState() {
+      const submitButton = document.getElementById('submit');
+      if (checkTextareas()) {
+        submitButton.removeAttribute('disabled'); // Enable the submit button
+      } else {
+        submitButton.setAttribute('disabled', 'disabled'); // Disable the submit button
+      }
+    }
+
+    // Add event listeners to all textareas
+    const textareas = document.querySelectorAll('textarea');
+    for (const textarea of textareas) {
+      textarea.addEventListener('input', toggleSubmitButtonState);
     }
   </script>
 
