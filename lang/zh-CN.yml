@@ -4,3 +4,6 @@ global:
     add_announcement: 添加新的公告
   button:
     submit: 提交
+  alert:
+    badtoken: Token验证失败
+    failed: 公告添加失败，请稍后重试！

@@ -4,3 +4,6 @@ global:
     add_announcement: Add New Announcement
   button:
     submit: Submit
+  alert:
+    badtoken: Token is incorrect
+    failed: Failed to add announcement. Please try again later.

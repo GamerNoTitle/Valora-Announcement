@@ -4,3 +4,6 @@ global:
     add_announcement: 新しいお知らせを追加
   button:
     submit: 送信
+  alert:
+    badtoken: 令牌不正確
+    failed: 添加公告失敗，請稍後重試。
