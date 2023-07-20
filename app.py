@@ -3,7 +3,7 @@ import sys
 import os
 import yaml
 from datetime import datetime
-
+from flask_babel import Babel
 import leancloud
 from flask import Flask, jsonify, request
 from flask import render_template
