@@ -1,0 +1,6 @@
+global:
+  title:
+    announcement: お知らせ管理
+    add_announcement: 新しいお知らせを追加
+  button:
+    submit: 送信

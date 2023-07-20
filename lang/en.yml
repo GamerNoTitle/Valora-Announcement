@@ -1,0 +1,6 @@
+global:
+  title:
+    announcement: Announcement Management
+    add_announcement: Add New Announcement
+  button:
+    submit: Submit

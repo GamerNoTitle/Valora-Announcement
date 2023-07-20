@@ -44,6 +44,9 @@ def add_api():
     if token == os.environ.get('TOKEN'):
         pass
 
+@ app.route('/assets/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('assets', filename)
 
 # REST API example
 class BadGateway(Exception):

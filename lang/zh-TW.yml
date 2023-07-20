@@ -1,0 +1,289 @@
+metadata:
+  level:
+    # This means what word "level" shoule be like in the language, you can find it in every upgradable skin
+    # example: https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    level: 等級
+    EEquippableSkinLevelItem::VFX: 視覺效果
+    EEquippableSkinLevelItem::Animation: 視覺動畫
+    EEquippableSkinLevelItem::Finisher: 終結特效
+    EEquippableSkinLevelItem::SoundEffects: 音效
+    # For Protocol 781-A Level 5 https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05
+    EEquippableSkinLevelItem::Voiceover: 在地化語音
+    # For Neptune Level 2 https://valorant-api.com/v1/weapons/skinlevels/24e39414-4a8e-e800-1242-08bd94b5e3c4
+    EEquippableSkinLevelItem::FishAnimation: 魚缸動畫
+    # For Neptune Level 3 https://valorant-api.com/v1/weapons/skinlevels/7b2826b6-4771-7529-b656-b89b9c1d86b6
+    EEquippableSkinLevelItem::KillBanner: 擊殺旗幟
+    # For Champions Set Level 4 https://valorant-api.com/v1/weapons/skinlevels/4c8a49bd-4118-9523-6612-4a924651b4a9
+    EEquippableSkinLevelItem::TopFrag: 擊殺光環
+    # For RGX 11z Pro Set Level 5 https://valorant-api.com/v1/weapons/skinlevels/796cf1d2-4893-fee7-3401-beb277c726c8
+    EEquippableSkinLevelItem::KillCounter: 擊殺計數器
+    # For Champions Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/f96ed262-4280-2363-2542-38b5620bfbb5
+    EEquippableSkinLevelItem::InspectAndKill: 擊殺特效
+    # For some skins https://valorant-api.com/v1/weapons/skinlevels/bf4489ad-4739-555c-2511-7cbcc503566c
+    EEquippableSkinLevelItem::KillEffect: 擊殺特效&音效
+    # For Black.Market Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/65c7df10-4a5e-7eaa-dc45-d0a46f147b18
+    EEquippableSkinLevelItem::AttackerDefenderSwap: 隨陣營變色
+    # For Xenohunter Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/289d7473-472b-68da-9019-da9594a8a127
+    EEquippableSkinLevelItem::HeartbeatAndMapSensor: 心跳和地圖審查
+    # For Recon Set Level 2 https://valorant-api.com/v1/weapons/skinlevels/a8509c8d-4061-1c57-60a5-61a025f28408
+    EEquippableSkinLevelItem::Randomizer: 隨機模組
+    # For Neo Frontier Set Level 3 https://valorant-api.com/v1/weapons/skinlevels/C5175815-41DA-879B-C547-429CE4D7A191
+    EEquippableSkinLevelItem::Transformation: 變換形態
+  weapon:
+    classic: 制式手槍
+    shorty: 短管
+    frenzy: 狂弒
+    ghost: 鬼魅
+    sheriff: 神射
+    stinger: 刺針
+    spectre: 惡靈
+    bucky: 重砲
+    judge: 判官
+    bulldog: 鬥牛犬
+    guardian: 捍衛者
+    phantom: 幻象
+    vandal: 暴徒
+    marshal: 警長
+    operator: 間諜
+    ares: 戰神
+    odin: 奧丁
+    melee: 近戰武器
+  description:
+    # All these sources to replace can be found at the links above
+    # You need to add ?language=<your lang> to check your language
+    # Available language: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
+    # For China mainland players, all the names of the guns are using zh-TW, cause this program does not support Valorant from Tencent.
+    # example: https://valorant-api.com/v1/weapons/skinlevels/a117218e-4f0e-0cca-7758-7ea30b08ac05?language=zh-CN
+    Voiceover: 在地化語音可能會因地區而異
+    KillEffect: 每次擊殺敵人時，都會播放專屬視覺特效及音效
+    AttackerDefenderSwap: 此造型設計會因你是攻擊方或守備方而變化
+    TopFrag: 在對戰中取得最多擊殺時才會顯示光環
+
+global:
+  title:
+    dailyshop: 每日商店
+    nightmarket: 折扣夜市
+    shopdefault: 我的商店
+    library: 皮膚库
+    trans: 翻譯對照表
+    inventory: 我的庫存
+    accessory: 配件商店
+  description:
+    line1: 瓦羅蘭特（無畏契約）商店查看，讓你不用登錄遊戲也能夠查看每日商店（僅支持國際服）
+    line2: 所有的登錄名和密碼服務器均不進行存取，僅用於登錄
+  nav:
+    title: 靠北啦，拳頭退款喇！
+  button:
+    dailyshop: 每日商店
+    nightmarket: 折扣夜市
+    account: 賬戶管理
+    authinfo: 認證信息
+    sponsor: 恰飯鏈接
+    logout: 退出登錄
+    library: 皮膚總覽
+    home: 返回首頁
+    trans: 翻譯對照
+    inventory: 我的庫存
+    accessory: 配件商店
+
+login:
+  front:
+    title: 登錄你的Riot賬號
+    description:
+      line1: 伺服器不會存取您的登錄名和密碼，支援具有雙重認證的帳號
+      line2: 強烈建議開啟雙重認證，以避免不必要的麻煩
+  form:
+    username:
+      title: 用戶名
+      placeholder: 請輸入你的用戶名
+    password:
+      title: 密碼
+      placeholder: 請輸入密碼
+    checkbox:
+      remember: 保持登錄（減少登錄次數）
+      nostorage: 我已明白網站僅會將我的登錄名和密碼用於登錄我的賬號
+      eula: 我已閱讀<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#eac12e01944f4e279ff7da7b19900bb9" class="text-dark" target="_blank"><u>常見問題</u></a>並同意<a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#b3e56d8a48ab40a5953bd217e18c36a2" class="text-dark" target="_blank"><u>免責聲明</u></a>
+  button:
+    login: 登錄
+    tokenlogin: 使用 Access Token 登入
+  alert:
+    loginerror: 登入出錯，請稍後重試！
+    infoerror: 請提供正確的憑據並正確登入！
+  modal:
+    title: 使用 Access Token 登入
+    button: 
+      close: 關閉
+    reminder: 登入前請先閱讀此文件 -> <u><a href="https://gamernotitle.notion.site/gamernotitle/VALORA-FAQ-86f072f8cebf4a8d9453a795b24cd507#9f5e39f5691942a3921470cf991279e1">如何使用 Access Token 登入</a></u>
+    form:
+      token:
+        title: Access Token
+        placeholder: 請輸入您的 Access Token
+      userid:
+        title: 使用者 ID
+        placeholder: 請輸入您的使用者 ID
+      region:
+        title: 帳號地區（ap/na/eu/kr）
+        placeholder: 請輸入您的帳號所在地區
+      login: 使用 Access Token 登入
+      close: 關閉
+mfa:
+  front:
+    title: 二步驗證
+    description:
+      line1: 請前往你的綁定郵箱獲取驗證碼後，在這裡填入
+      line2: 伺服器不對賬號的登錄名和密碼進行存取
+  form:
+    code:
+      title: 二步驗證碼
+      placeholder: 請輸入驗證碼
+  button:
+    confirm: 確認
+
+market:
+  welcome:
+    # Welcome message format:
+    # <opening> {{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 歡迎回來
+    credit: 你現在持有
+  title: 今日商店 | Daily Shop
+  table:
+    skinname: 皮膚名稱
+    skinimg: 皮膚圖片
+    skincost: 皮膚售價
+    skinpreview: 皮膚預覽
+  modal:
+    videonotavaliable: 當前瀏覽器無法預覽視頻
+  button:
+    close: 關閉
+    levelpreview: 等級預覽
+    chromapreview: 炫彩預覽
+    return: 返回
+    
+nightmarket:
+  welcome:
+    # Welcome message format:
+    # <opening> {{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 歡迎回來
+    credit: 你現在持有
+  notavaliable: 夜市還沒有開放哦，先去看看每日商店吧！
+  title: 夜市 | Night Market
+  table:
+    skinname: 皮膚名稱
+    skinimg: 皮膚圖片
+    skincost: 皮膚售價
+    skinpreview: 皮膚預覽
+  modal:
+    videonotavaliable: 當前瀏覽器無法預覽視頻
+  button:
+    close: 關閉
+    levelpreview: 等級預覽
+    chromapreview: 炫彩預覽
+    return: 返回
+
+library:
+  title: 皮膚库 | Skin library
+  table:
+    skinname: 皮膚名称
+    skinimg: 皮膚图片
+    skincost: 皮膚售价
+    skinpreview: 皮膚预览
+  modal:
+    videonotavaliable: 當前瀏覽器無法預覽視頻
+  button:
+    close: 關閉
+    prev: 上一頁
+    next: 下一頁
+    search: 搜尋
+    return: 返回皮膚庫
+    sort: 按武器搜尋
+    weapon:
+      classic: 制式手槍
+      shorty: 短管
+      frenzy: 狂弒
+      ghost: 鬼魅
+      sheriff: 神射
+      stinger: 刺針
+      spectre: 惡靈
+      bucky: 重砲
+      judge: 判官
+      bulldog: 鬥牛犬
+      guardian: 捍衛者
+      phantom: 幻象
+      vandal: 暴徒
+      marshal: 警長
+      operator: 間諜
+      ares: 戰神
+      odin: 奧丁
+      melee: 近戰武器
+  form:
+    search:
+      title: 搜尋
+      placeholder: 請輸入您想搜尋的內容（簡中繁中均可）
+  notfound: 未找到您搜尋的內容
+
+trans:
+  title: 翻譯對照表 | Translation Table
+  button:
+    agents: 特务
+    maps: 地圖
+    skins: 皮膚
+    weapons: 武器
+
+inventory:
+  title: 我的庫存 | Inventory
+  button:
+    close: 關閉
+  modal:
+    videonotavaliable: 當前瀏覽器無法預覽視頻
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    # <cost> {{player.costVP}} VP & {{player.costRP}} RP
+    opening: 歡迎回來
+    credit: 你現在持有
+    cost: 當前庫存價值
+
+accessory:
+  welcome:
+    # Welcome message format:
+    # <opening>{{player.name}}#{{player.tag}}
+    # <credit> {{player.vp}} VP & {{player.rp}} RP
+    opening: 歡迎回來
+    credit: 你現在持有
+  title: 配飾商店 | Accessory Store
+  table:
+    name: 配飾名稱
+    preview: 配飾預覽
+    cost: 配飾價格
+
+down:
+  title: 正在計劃中的維護
+  detail: Valorant正在維護中，請在維護完成後再使用Valora進行查詢！
+
+error:
+  error500:
+    tip: 500伺服器錯誤
+    error: 非常抱歉，伺服器發生了一些錯誤
+    detail:
+      front: 伺服器發生了以下錯誤：
+      solve: 你可以嘗試【刷新網頁】或者點擊下方的「重置網站數據」按鈕來解決這個問題。<br>如果你已經點擊了下面的按鈕，但仍然出現了這個問題，請嘗試清除瀏覽器的cookie來重置會話<br>如果上面這兩種方法你都已經嘗試過了，那麼請帶著此錯誤信息聯繫開發者！
+    button:
+      reset: 重置網站數據
+      report: 於Github中提交錯誤
+    hover:
+      reset: 這會重置你在本網站的數據，包括但不限於退出登錄
+      report: 在Github提交一個新的issue，這樣我能夠快速解決問題
+  error404:
+    tip: 404未找到
+    error: 你來到了一個無人所知的地方
+    button:
+      home: 返回首頁
+
+expired:
+  title: 登入失效 | Login Expired
+  detail: 登入失效，請點擊下方按鈕返回登入界面重新登入
+  button:
+    return: 返回登入頁面

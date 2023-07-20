@@ -1,0 +1,6 @@
+global:
+  title:
+    announcement: 公告管理
+    add_announcement: 添加新的公告
+  button:
+    submit: 提交
