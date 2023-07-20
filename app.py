@@ -10,7 +10,6 @@ from flask import render_template
 from leancloud import LeanCloudError
 
 app = Flask(__name__)
-sockets = Sockets(app)
 babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
