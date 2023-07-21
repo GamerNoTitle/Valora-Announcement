@@ -47,7 +47,7 @@ def add_panel():
 def add_api():
     en, zh_CN, zh_TW, ja_JP = request.form.get('en'), request.form.get('zh_CN'), request.form.get('zh_TW'), request.form.get('ja_JP')
     token = request.form.get('token')
-    if token == os.environ.get('TOKEN'):
+    if token == os.environ.get('TOKEN', 'VAMS'):
         Announcement = leancloud.Object.extend('announcement')
         announcement = Announcement()
         announcement.set('en', en)
@@ -65,7 +65,7 @@ def get_api():
     result = query.find()
     if result:
         return result[0]
-    return None
+    return {}
 
 
 @ app.route('/assets/<path:filename>')
