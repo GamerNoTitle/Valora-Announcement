@@ -62,7 +62,7 @@ def get_api():
     query = Announcement.query
     query.limit(1)  # 限制只获取一条数据
     query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
-    print(query[0])
+    print(dir(query))
     print(type(query))
     result = query.find()
     if result:
