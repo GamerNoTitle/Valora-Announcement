@@ -8,12 +8,11 @@ import os
 import leancloud
 
 from app import app
-from cloud import engine
 
 APP_ID = os.environ['LEANCLOUD_APP_ID']
 APP_KEY = os.environ['LEANCLOUD_APP_KEY']
 MASTER_KEY = os.environ['LEANCLOUD_APP_MASTER_KEY']
-PORT = int(os.environ['LEANCLOUD_APP_PORT'])
+PORT = int(os.environ.get('LEANCLOUD_APP_PORT', 443))
 TOKEN = os.environ.get('TOKEN', 'HelloWorld')
 
 leancloud.init(APP_ID, app_key=APP_KEY, master_key=MASTER_KEY)
@@ -22,7 +21,6 @@ leancloud.use_master_key(False)
 
 # Uncomment the following line to redirect HTTP requests to HTTPS.
 # app = leancloud.HttpsRedirectMiddleware(app)
-app = engine.wrap(app)
 application = app
 
 if __name__ == '__main__':
