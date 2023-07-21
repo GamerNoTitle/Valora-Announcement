@@ -64,7 +64,7 @@ You should access to your VAMS and add the announcement manually. This step need
 
 本项目是专属于[Valora](https://github.com/GamerNoTitle/Valora)的公告系统，主要是为了在不需要重新部署Valora的情况下轻松更新公告，正因如此，我做了这个系统
 
-Valora-Announcement（下面简称VAMS，为Valora-Announcement-Management-System的缩写）需要运行在Leancloud服务上面，如果你在中国大陆内使用本服务，请将区域选择为华东或者华北（**国内部署需要备案域名**），因为国际版是不支持国内进行访问的，所以你必须选择合适的位置进行部署。如果你是在中国大陆以外的地方使用，那就随便你了
+Valora-Announcement（下面简称VAMS，为Valora-Announcement-Management-System的缩写）需要运行在Leancloud服务上面，如果你在中国大陆内使用本服务，请将区域选择为华东或者华北（**国内部署需要备案域名**），因为国际版是不支持国内进行访问的（指默认域名，自己有域名就随便），所以你必须选择合适的位置进行部署。如果你是在中国大陆以外的地方使用，那就随便你了
 
 ### 第一步：添加APP
 
