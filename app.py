@@ -70,7 +70,10 @@ def get_api():
     query.limit(1)  # 限制只获取一条数据
     query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
     query.not_equal_to('en', '')
-    result = query.first()
+    try:
+        result = query.first()
+    except LeanCloudError:
+        return {"code": 500, "msg": "no announcement found", "id": None, "announcement": None}
     if result:
         data = {
             "code": 200,
