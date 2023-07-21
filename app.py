@@ -62,13 +62,13 @@ def get_api():
     query = Announcement.query
     query.limit(1)  # 限制只获取一条数据
     query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
-    result = query.find()
+    result = query.find().first()
     print(list(result))
     if result:
         data = {
             "code": 200,
             "msg": 'success',
-            "id": result.get('id'),
+            "id": result.id,
             "announcement": {
                 "en": result.get('en'),
                 "zh-CN": result.get('zh_CN'),
