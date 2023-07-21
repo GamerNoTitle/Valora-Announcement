@@ -36,10 +36,10 @@ if __name__ == '__main__':
         result = query.find()
         if not result:
             announcement = Announcement()
-            announcement.set('en', 'Hello Valora!')
-            announcement.set('zh_CN', 'Hello Valora!')
-            announcement.set('zh_TW', 'Hello Valora!')
-            announcement.set('ja_JP', 'Hello Valora!')
+            announcement.set('en', 'When you see this message, it means that your Valora has successfully integrated the announcement system! The announcement system GitHub repository link: <u><a href="https://github.com/GamerNoTitle/Valora-Announcement">Valora-Announcement</a></u>')
+            announcement.set('zh_CN', '当你看到这个提示，说明你的Valora已经成功接入了公告系统！公告系统Github仓库链接：<u><a href="https://github.com/GamerNoTitle/Valora-Announcement">Valora-Announcement</a></u>')
+            announcement.set('zh_TW', '當你看到這個提示，說明你的 Valora 已經成功接入了公告系統！公告系統 Github 倉庫連結：<u><a href="https://github.com/GamerNoTitle/Valora-Announcement">Valora-Announcement</a></u>')
+            announcement.set('ja_JP', 'このメッセージを見ると、Valora が公告システムを正常に統合したことを意味します！公告システムの GitHub リポジトリのリンク：<u><a href="https://github.com/GamerNoTitle/Valora-Announcement">Valora-Announcement</a></u>')
             announcement.save()
 
         server = WSGIServer(('0.0.0.0', PORT), application, log=None, handler_class=WebSocketHandler)
