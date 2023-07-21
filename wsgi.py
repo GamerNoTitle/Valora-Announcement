@@ -42,7 +42,6 @@ if __name__ == '__main__':
             announcement.set('ja_JP', 'Hello Valora!')
             announcement.save()
 
-
         server = WSGIServer(('0.0.0.0', PORT), application, log=None, handler_class=WebSocketHandler)
         server.serve_forever()
     else:
