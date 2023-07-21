@@ -68,13 +68,13 @@ Valora-Announcement（下面简称VAMS，为Valora-Announcement-Management-Syste
 
 ### 第一步：添加APP
 
-![](https://registry.npmmirror.com/gamernotitle-oss/1.0.3/files/img/Github/Valora-Announcement/msedge-20230721-171943.png)
+![](https://registry.npmmirror.com/gamernotitle-oss/1.0.4/files/img/Github/Valora-Announcement/msedge-20230721-171943.png)
 
 登录到控制台后，点击创建应用，名字按照它的要求填好后，点击创建
 
 ### 第二步：添加`announcement`类（class）
 
-![](https://registry.npmmirror.com/gamernotitle-oss/1.0.3/files/img/Github/Valora-Announcement/msedge-20230721-172114.png)
+![](https://registry.npmmirror.com/gamernotitle-oss/1.0.4/files/img/Github/Valora-Announcement/msedge-20230721-172114.png)
 
 你需要按照如图的步骤，添加名为`announcement`的类（class）
 
@@ -82,7 +82,7 @@ Valora-Announcement（下面简称VAMS，为Valora-Announcement-Management-Syste
 
 ### 第三步：添加必须的列
 
-![](https://registry.npmmirror.com/gamernotitle-oss/1.0.3/files/img/Github/Valora-Announcement/msedge-20230721-174037.png)
+![](https://registry.npmmirror.com/gamernotitle-oss/1.0.4/files/img/Github/Valora-Announcement/msedge-20230721-174037.png)
 
 你需要点击添加列按钮，添加名为`en` `zh_CN` `zh_TW` `ja_JP`的四列，对应Valora支持的四种语言（如果你不想加对应语言的公告的话，添加的时候可以随便写，但是必须有这四列）
 
