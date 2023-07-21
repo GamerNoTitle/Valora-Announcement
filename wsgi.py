@@ -29,6 +29,20 @@ if __name__ == '__main__':
 
     env = os.environ['LEANCLOUD_APP_ENV']
     if env == 'production':
+        Announcement = leancloud.Object.extend('announcement')
+        query = Announcement.query
+        query.limit(1)  # 限制只获取一条数据
+        query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+        result = query.find()
+        if not result:
+            announcement = Announcement()
+            announcement.set('en', 'Hello Valora!')
+            announcement.set('zh_CN', 'Hello Valora!')
+            announcement.set('zh_TW', 'Hello Valora!')
+            announcement.set('ja_JP', 'Hello Valora!')
+            announcement.save()
+
+
         server = WSGIServer(('0.0.0.0', PORT), application, log=None, handler_class=WebSocketHandler)
         server.serve_forever()
     else:
