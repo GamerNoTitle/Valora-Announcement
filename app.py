@@ -13,7 +13,7 @@ app = Flask(__name__)
 babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
-leancloud.init(os.environ.get('APP_ID'), os.environ.get('APP_KEY'))
+leancloud.init(os.environ.get('LEANCLOUD_APP_ID'), os.environ.get('LEANCLOUD_APP_KEY'))
 
 @app.route('/')
 def index():
@@ -58,16 +58,25 @@ def add_api():
 
 @app.route('/api/get')
 def get_api():
-    Announcement = leancloud.Object.extend('announcement')
+    Announcement: leancloud.Object = leancloud.Object.extend('announcement')
     query = Announcement.query
     query.limit(1)  # 限制只获取一条数据
     query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
-    print(dir(query))
-    print(type(query))
     result = query.find()
     if result:
-        return result[0]
-    return {}
+        data = {
+            "code": 200,
+            "msg": 'success',
+            "id": result.get('id'),
+            "announcement": {
+                "en": result.get('en'),
+                "zh-CN": result.get('zh_CN'),
+                "zh-TW": result.get('zh_TW'),
+                "ja-JP": result.get('ja-JP')
+            }
+        }
+        return data
+    return {"code": 500, "msg": "no announcement found", "id": None, "announcement": None}
 
 
 @ app.route('/assets/<path:filename>')
