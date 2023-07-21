@@ -62,8 +62,8 @@ def get_api():
     query = Announcement.query
     query.limit(1)  # 限制只获取一条数据
     query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+    query.not_equal_to('en', '')
     result = query.first()
-    result.first()
     print(list(result))
     if result:
         data = {
