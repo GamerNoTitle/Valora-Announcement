@@ -76,18 +76,18 @@ def get_api():
         return {"code": 500, "msg": "no announcement found", "id": None, "announcement": None}
     if result:
         data = {
-            "code": 200,
-            "msg": 'success',
-            "id": result.id,
-            "announcement": {
-                "en": result.get('en'),
-                "zh-CN": result.get('zh_CN'),
-                "zh-TW": result.get('zh_TW'),
-                "ja-JP": result.get('ja_JP')
+            'code': 200,
+            'msg': 'success',
+            'id': result.id,
+            'announcement': {
+                'en': result.get('en'),
+                'zh-CN': result.get('zh_CN'),
+                'zh-TW': result.get('zh_TW'),
+                'ja-JP': result.get('ja_JP')
             }
         }
         return data
-    return {"code": 500, "msg": "no announcement found", "id": None, "announcement": None}
+    return {'code': 500, 'msg': 'no announcement found', 'id': None, 'announcement': None}
 
 
 @ app.route('/assets/<path:filename>')
