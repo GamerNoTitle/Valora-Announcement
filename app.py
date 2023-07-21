@@ -48,13 +48,20 @@ def add_api():
     en, zh_CN, zh_TW, ja_JP = request.form.get('en'), request.form.get('zh_CN'), request.form.get('zh_TW'), request.form.get('ja_JP')
     token = request.form.get('token')
     if token == os.environ.get('TOKEN', 'VAMS'):
-        Announcement = leancloud.Object.extend('announcement')
-        announcement = Announcement()
-        announcement.set('en', en)
-        announcement.set('zh_CN', zh_CN)
-        announcement.set('zh_TW', zh_TW)
-        announcement.set('ja_JP', ja_JP)
-        announcement.save()
+        try:
+            Announcement = leancloud.Object.extend('announcement')
+            announcement = Announcement()
+            announcement.set('en', en)
+            announcement.set('zh_CN', zh_CN)
+            announcement.set('zh_TW', zh_TW)
+            announcement.set('ja_JP', ja_JP)
+            announcement.save()
+            return redirect('/?success')
+        except Exception as e:
+            print(e)
+            return redirect('/?failed')
+    else:
+        return redirect('/?badtoken')
 
 @app.route('/api/get')
 def get_api():
@@ -73,7 +80,7 @@ def get_api():
                 "en": result.get('en'),
                 "zh-CN": result.get('zh_CN'),
                 "zh-TW": result.get('zh_TW'),
-                "ja-JP": result.get('ja-JP')
+                "ja-JP": result.get('ja_JP')
             }
         }
         return data

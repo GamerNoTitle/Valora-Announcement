@@ -7,3 +7,4 @@ global:
   alert:
     badtoken: 令牌不正確
     failed: 添加公告失敗，請稍後重試。
+    success: 新しいお知らせが正常に追加されました！

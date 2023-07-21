@@ -7,3 +7,4 @@ global:
   alert:
     badtoken: Token验证失败
     failed: 公告添加失败，请稍后重试！
+    success: 新的公告已添加！

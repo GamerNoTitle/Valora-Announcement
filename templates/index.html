@@ -180,6 +180,12 @@
               {{lang.global.alert.failed}}
             </div>
           </div>
+          <div class="container">
+            <div align="center" id="success" class="alert alert-success text-white font-weight-bold hidden"
+              role="alert">
+              {{lang.global.alert.success}}
+            </div>
+          </div>
           <form role="form" method="post" autocomplete="off" action="/api/add">
             <div class="card-body">
               <div class="row">
@@ -444,5 +450,21 @@
       field.addEventListener('input', toggleSubmitButtonState);
     });
   </script>
+  <script>
+    // 获取 URL 的 query 参数
+    const urlParams = new URLSearchParams(window.location.search);
 
+    // 显示或隐藏对应的框
+    if (urlParams.has("success")) {
+      document.getElementById("success").classList.remove("hidden");
+    }
+
+    if (urlParams.has("failed")) {
+      document.getElementById("failed").classList.remove("hidden");
+    }
+
+    if (urlParams.has("badtoken")) {
+      document.getElementById("badtoken").classList.remove("hidden");
+    }
+  </script>
 </body>

@@ -7,3 +7,4 @@ global:
   alert:
     badtoken: Token is incorrect
     failed: Failed to add announcement. Please try again later.
+    success: New announcement has been added successfully!
