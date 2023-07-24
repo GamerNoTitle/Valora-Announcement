@@ -567,14 +567,13 @@
       const textareas = [enTextarea, zhCNTextarea, zhTWTextarea, jaJPTextarea];
 
       for (const textarea of textareas) {
-        if (textarea.value.trim() === '') {
-          return false;
+        if (textarea.value.trim() !== '') {
+          return true; // 只要有一个非空，就返回 true
         }
       }
 
-      return tokenInput.value.trim() !== '';
+      return false; // 所有文本域都为空，返回 false
     }
-
     // 切换提交按钮状态的函数
     function toggleSubmitButtonState() {
       submitButton.disabled = !checkFormFields();
