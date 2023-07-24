@@ -561,7 +561,6 @@
     const jaJPTextarea = document.getElementById('ja_JP');
     const tokenInput = document.getElementById('token');
     const submitButton = document.getElementById('submit');
-
     // 检查所有表单字段是否都非空的函数
     function checkFormFields() {
       const textareas = [enTextarea, zhCNTextarea, zhTWTextarea, jaJPTextarea];
@@ -604,9 +603,13 @@
   </script>
   <script>
     function setContent(language) {
+      const prevann = {{prev_ann}};
       const announcementNotice = document.getElementById('announcementNotice');
       const announcementBtn = document.getElementById('announcementBtn');
       const content = document.getElementById(language).value
+      if (content === '') {
+        content = prevann.announcement[language]
+      }
       const announcementContent = document.getElementById('announcementContent');
       announcementContent.innerHTML = content
       announcementNotice.style.display = 'flex'

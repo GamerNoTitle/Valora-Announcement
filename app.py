@@ -32,8 +32,28 @@ def index():
         lang = 'en'
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
-
-    return render_template('index.html', lang=yaml.load(transtable, Loader=yaml.FullLoader))
+    Announcement: leancloud.Object = leancloud.Object.extend('announcement')
+    query = Announcement.query
+    query.limit(1)  # 限制只获取一条数据
+    query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+    query.not_equal_to('en', '')
+    data = None
+    try:
+        result = query.first()
+        data = {
+        'code': 200,
+        'msg': 'success',
+        'id': result.id,
+        'announcement': {
+            'en': result.get('en'),
+            'zh-CN': result.get('zh_CN'),
+            'zh-TW': result.get('zh_TW'),
+            'ja-JP': result.get('ja_JP')
+        }
+    }
+    except LeanCloudError:
+        pass
+    return render_template('index.html', lang=yaml.load(transtable, Loader=yaml.FullLoader), prev_ann = data)
 
 @app.route('/api/time')
 def time():
