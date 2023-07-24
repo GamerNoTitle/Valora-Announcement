@@ -606,7 +606,7 @@
       const prevann = {{prev_ann|safe}};
       const announcementNotice = document.getElementById('announcementNotice');
       const announcementBtn = document.getElementById('announcementBtn');
-      const content = document.getElementById(language).value
+      var content = document.getElementById(language).value
       if (content === '') {
         content = prevann.announcement[language]
       }
