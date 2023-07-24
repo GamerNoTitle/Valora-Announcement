@@ -603,7 +603,7 @@
   </script>
   <script>
     function setContent(language) {
-      const prevann = {{prev_ann}};
+      const prevann = {{prev_ann|safe}};
       const announcementNotice = document.getElementById('announcementNotice');
       const announcementBtn = document.getElementById('announcementBtn');
       const content = document.getElementById(language).value
