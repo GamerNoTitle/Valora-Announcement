@@ -608,7 +608,7 @@
       const announcementBtn = document.getElementById('announcementBtn');
       var content = document.getElementById(language).value
       if (content === '') {
-        content = prevann.announcement[language]
+        content = prevann.announcement[language.replace('_', '-')]
       }
       const announcementContent = document.getElementById('announcementContent');
       announcementContent.innerHTML = content
