@@ -4,7 +4,15 @@ global:
     add_announcement: Add New Announcement
   button:
     submit: Submit
+    preview:
+      en: Preview English Announcement
+      zh_CN: Preview Simplified Chinese Announcement
+      zh_TW: Preview Traditional Chinese Announcement
+      ja_JP: Preview Japanese Announcement
   alert:
     badtoken: Token is incorrect
     failed: Failed to add announcement. Please try again later.
     success: New announcement has been added successfully!
+  announcement:
+    title: New Announcement Arrival
+    button: I understand

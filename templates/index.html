@@ -66,6 +66,102 @@
     .hidden {
       display: none;
     }
+    /* 公告弹窗 */
+    #announcementNotice {
+      background-color: #ea4450;
+      color: #fff;
+      padding: 1rem;
+      position: fixed;
+      bottom: 2%;
+      left: 3%;
+      right: 3%;
+      z-index: 999;
+      display: none;
+      border-radius: 10px;
+      /* 添加Flex布局，子元素自动换行 */
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    #announcementNotice p {
+      margin: 0;
+      /* 添加自动换行 */
+      word-wrap: break-word;
+    }
+    #announcementNotice h3 {
+      color: #FFF;
+      font-weight: bold;
+    }
+    #announcementNotice code {
+      color: #FFF;
+    }
+    #announcementBtn {
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-weight: bold;
+    }
+    /* 链接字体加粗并添加下划线，颜色固定为白色 */
+    #announcementNotice a {
+      text-decoration: underline;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .container#market,
+    .container#night {
+      max-width: 1600px !important;
+    }
+
+    /* 公告弹窗适用于手机的样式 */
+    @media (max-width: 767px) {
+      #announcementNotice {
+        background-color: #ea4450;
+        color: #fff;
+        padding: 1rem;
+        position: fixed;
+        z-index: 999;
+        display: none;
+        bottom: 1%;
+        left: 1%;
+        right: 1%;    /* 添加Flex布局，子元素自动换行 */
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      #announcementNotice p {
+        margin: 0;
+        /* 添加自动换行 */
+        word-wrap: break-word;
+      }
+      #announcementNotice h3 {
+        color: #FFF;
+        font-weight: bold;
+      }
+      #announcementBtn {
+        color: #fff;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-weight: bold;
+      }
+      /* 链接字体加粗并添加下划线，颜色固定为白色 */
+      #announcementNotice a {
+        text-decoration: underline;
+        color: #fff;
+        font-weight: bold;
+      }
+      
+    }
+
+    /* 公告淡出动画 */
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZYM17KPGT"></script>
@@ -81,6 +177,20 @@
   type="text/javascript"></script>
 
 <body class="index-page">
+
+  <div id="announcementNotice" style="display: none;">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3>{{lang.global.announcement.title}}</h3>
+          <p id="announcementContent"></p>
+        </div>
+        <div class="col-auto">
+          <button type="button" id="announcementBtn">{{lang.global.announcement.button}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Navbar -->
@@ -228,11 +338,37 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <button type="button" class="btn bg-gradient-dark btn-block w-100" id="button" onclick="setContent('en')">
+                    <img src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">
+                    {{lang.global.button.preview.en}}
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" class="btn bg-gradient-dark btn-block w-100" id="button" onclick="setContent('zh_CN')">
+                    <img src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">
+                    {{lang.global.button.preview.zh_CN}}
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" class="btn bg-gradient-dark btn-block w-100" id="button" onclick="setContent('zh_TW')">
+                    <img src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">
+                    {{lang.global.button.preview.zh_TW}}
+                  </button>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" class="btn bg-gradient-dark btn-block w-100" id="button" onclick="setContent('ja_JP')">
+                    <img src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">
+                    {{lang.global.button.preview.ja_JP}}
+                  </button>
+                </div>
+              </div>
+            </div>
               <div class="col-md-12">
                 <button type="submit" class="btn bg-gradient-dark w-100" id="submit" disabled><img
                     src="https://cdn.bili33.top/gh/GamerNoTitle/Valora@master/assets/img/img-navi-valorant-white.svg">{{lang.global.button.submit}}</button>
               </div>
-            </div>
         </div>
       </div>
       </form>
@@ -465,6 +601,27 @@
 
     if (urlParams.has("badtoken")) {
       document.getElementById("badtoken").classList.remove("hidden");
+    }
+  </script>
+  <script>
+    function setContent(language) {
+      const announcementNotice = document.getElementById('announcementNotice');
+      const announcementBtn = document.getElementById('announcementBtn');
+      const content = document.getElementById(language).value
+      const announcementContent = document.getElementById('announcementContent');
+      announcementContent.innerHTML = content
+      announcementNotice.style.display = 'flex'
+    }
+    // 获取关闭按钮和悬浮窗元素
+    const announcementNotice = document.getElementById('announcementNotice');
+    const announcementBtn = document.getElementById('announcementBtn');
+    announcementBtn.addEventListener('click', closeannouncementNotice);
+    // 关闭悬浮窗
+    function closeannouncementNotice() {
+      announcementNotice.style.animation = 'fadeOut 1s';
+      setTimeout(() => {
+        announcementNotice.style.display = 'none';
+      }, 1000);
     }
   </script>
 </body>

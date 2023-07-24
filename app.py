@@ -13,7 +13,7 @@ app = Flask(__name__)
 babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
-leancloud.init(os.environ.get('LEANCLOUD_APP_ID'), os.environ.get('LEANCLOUD_APP_KEY'))
+leancloud.init(os.environ.get('LEANCLOUD_APP_ID', '404'), os.environ.get('LEANCLOUD_APP_KEY', '404'))
 
 @app.route('/')
 def index():
@@ -99,3 +99,6 @@ def serve_static(filename):
 @app.route('/api/python-version', methods=['GET'])
 def python_version():
     return jsonify({"python-version": sys.version})
+
+if __name__ == '__main__':
+    app.run('0.0.0.0', 8080, debug=1)

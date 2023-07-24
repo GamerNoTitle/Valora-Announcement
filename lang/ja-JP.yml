@@ -4,7 +4,15 @@ global:
     add_announcement: 新しいお知らせを追加
   button:
     submit: 送信
+    preview:
+      en: 英語アナウンスをプレビュー
+      zh_CN: 簡体中国語アナウンスをプレビュー
+      zh_TW: 繁体中国語アナウンスをプレビュー
+      ja_JP: 日本語のアナウンスをプレビュー
   alert:
     badtoken: 令牌不正確
     failed: 添加公告失敗，請稍後重試。
     success: 新しいお知らせが正常に追加されました！
+  announcement:
+    title: 新しいお知らせが到着しました
+    button: 了解しました

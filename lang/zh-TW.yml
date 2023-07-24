@@ -4,7 +4,15 @@ global:
     add_announcement: 添加新的公告
   button:
     submit: 提交
+    preview:
+      en: 預覽英語公告
+      zh_CN: 預覽簡體中文公告
+      zh_TW: 預覽繁體中文公告
+      ja_JP: 預覽日語公告
   alert:
     badtoken: Token不正確
     failed: 添加公告失敗，請稍後重試。
     success: 新的公告已添加！
+  announcement:
+    title: 你有新的公告，請查收！
+    button: 我知道了
