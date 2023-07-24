@@ -46,6 +46,25 @@ def add_panel():
 @app.route('/api/add', methods=['POST'])
 def add_api():
     en, zh_CN, zh_TW, ja_JP = request.form.get('en'), request.form.get('zh_CN'), request.form.get('zh_TW'), request.form.get('ja_JP')
+    Announcement: leancloud.Object = leancloud.Object.extend('announcement')
+    query = Announcement.query
+    query.limit(1)  # 限制只获取一条数据
+    query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+    query.not_equal_to('en', '')
+    try:
+        no_previous_ann = False
+        result = query.first()
+    except LeanCloudError:
+        no_previous_ann = True
+    if not no_previous_ann:
+        if en == '':
+            en = result.get('en')
+        if zh_CN == '':
+            zh_CN = result.get('zh_CN')
+        if zh_TW == '':
+            zh_TW = result.get('zh_TW')
+        if ja_JP == '':
+            ja_JP = result.get('ja_JP')
     token = request.form.get('token')
     if token == os.environ.get('TOKEN', 'VAMS'):
         try:
