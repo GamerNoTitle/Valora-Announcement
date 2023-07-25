@@ -14,7 +14,7 @@ babel = Babel(app)
 app.config['BABEL_LANGUAGES'] = ['en', 'zh-CN', 'zh-TW', 'ja-JP']
 app.config['BABEL_DEFAULT_LOCALE'] = 'en'
 leancloud.init(os.environ.get('LEANCLOUD_APP_ID', '404'), os.environ.get('LEANCLOUD_APP_KEY', '404'))
-
+previous = None
 @app.route('/')
 def index():
     if request.args.get('lang'):
@@ -32,15 +32,16 @@ def index():
         lang = 'en'
     with open(f'lang/{lang}.yml', encoding='utf8') as f:
         transtable = f.read()
-    Announcement: leancloud.Object = leancloud.Object.extend('announcement')
-    query = Announcement.query
-    query.limit(1)  # 限制只获取一条数据
-    query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
-    query.not_equal_to('en', '')
-    data = None
+    if not previous:
+        Announcement: leancloud.Object = leancloud.Object.extend('announcement')
+        query = Announcement.query
+        query.limit(1)  # 限制只获取一条数据
+        query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+        query.not_equal_to('en', '')
     try:
         result = query.first()
-        data = {
+        global previous
+        previous = {
         'code': 200,
         'msg': 'success',
         'id': result.id,
@@ -49,8 +50,8 @@ def index():
             'zh-CN': result.get('zh_CN'),
             'zh-TW': result.get('zh_TW'),
             'ja-JP': result.get('ja_JP')
+            }
         }
-    }
     except LeanCloudError:
         pass
     return render_template('index.html', lang=yaml.load(transtable, Loader=yaml.FullLoader), prev_ann = data)
@@ -96,6 +97,25 @@ def add_api():
             announcement.set('zh_TW', zh_TW)
             announcement.set('ja_JP', ja_JP)
             announcement.save()
+            global previous
+            Announcement: leancloud.Object = leancloud.Object.extend('announcement')
+            query = Announcement.query
+            query.limit(1)  # 限制只获取一条数据
+            query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+            query.not_equal_to('en', '')
+            result = query.first()
+            global previous
+            previous = {
+                'code': 200,
+                'msg': 'success',
+                'id': result.id,
+                'announcement': {
+                    'en': result.get('en'),
+                    'zh-CN': result.get('zh_CN'),
+                    'zh-TW': result.get('zh_TW'),
+                    'ja-JP': result.get('ja_JP')
+                }
+            }        
             return redirect('/?success')
         except Exception as e:
             print(e)
@@ -105,28 +125,32 @@ def add_api():
 
 @app.route('/api/get')
 def get_api():
-    Announcement: leancloud.Object = leancloud.Object.extend('announcement')
-    query = Announcement.query
-    query.limit(1)  # 限制只获取一条数据
-    query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
-    query.not_equal_to('en', '')
-    try:
-        result = query.first()
-    except LeanCloudError:
-        return {"code": 500, "msg": "no announcement found", "id": None, "announcement": None}
-    if result:
-        data = {
-            'code': 200,
-            'msg': 'success',
-            'id': result.id,
-            'announcement': {
-                'en': result.get('en'),
-                'zh-CN': result.get('zh_CN'),
-                'zh-TW': result.get('zh_TW'),
-                'ja-JP': result.get('ja_JP')
-            }
-        }
-        return data
+    if not previous:
+        Announcement: leancloud.Object = leancloud.Object.extend('announcement')
+        query = Announcement.query
+        query.limit(1)  # 限制只获取一条数据
+        query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+        query.not_equal_to('en', '')
+        try:
+            result = query.first()
+        except LeanCloudError:
+            return {"code": 500, "msg": "no announcement found", "id": None, "announcement": None}
+        if result:
+            global previous
+            previous = data = {
+                'code': 200,
+                'msg': 'success',
+                'id': result.id,
+                'announcement': {
+                    'en': result.get('en'),
+                    'zh-CN': result.get('zh_CN'),
+                    'zh-TW': result.get('zh_TW'),
+                    'ja-JP': result.get('ja_JP')
+                }
+            }        
+            return data
+    else: 
+        return previous
     return {'code': 500, 'msg': 'no announcement found', 'id': None, 'announcement': None}
 
 
