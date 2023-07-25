@@ -17,6 +17,7 @@ leancloud.init(os.environ.get('LEANCLOUD_APP_ID', '404'), os.environ.get('LEANCL
 previous = None
 @app.route('/')
 def index():
+    global previous
     if request.args.get('lang'):
         if request.args.get('lang') in app.config['BABEL_LANGUAGES']:
             lang = request.args.get('lang')
@@ -40,7 +41,6 @@ def index():
         query.not_equal_to('en', '')
     try:
         result = query.first()
-        global previous
         previous = {
         'code': 200,
         'msg': 'success',
@@ -66,6 +66,7 @@ def add_panel():
 
 @app.route('/api/add', methods=['POST'])
 def add_api():
+    global previous
     en, zh_CN, zh_TW, ja_JP = request.form.get('en'), request.form.get('zh_CN'), request.form.get('zh_TW'), request.form.get('ja_JP')
     if en == '' or zh_CN == '' or zh_TW == '' or ja_JP == '':
         Announcement: leancloud.Object = leancloud.Object.extend('announcement')
@@ -97,14 +98,12 @@ def add_api():
             announcement.set('zh_TW', zh_TW)
             announcement.set('ja_JP', ja_JP)
             announcement.save()
-            global previous
             Announcement: leancloud.Object = leancloud.Object.extend('announcement')
             query = Announcement.query
             query.limit(1)  # 限制只获取一条数据
             query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
             query.not_equal_to('en', '')
             result = query.first()
-            global previous
             previous = {
                 'code': 200,
                 'msg': 'success',
@@ -125,6 +124,7 @@ def add_api():
 
 @app.route('/api/get')
 def get_api():
+    global previous
     if not previous:
         Announcement: leancloud.Object = leancloud.Object.extend('announcement')
         query = Announcement.query
@@ -136,7 +136,6 @@ def get_api():
         except LeanCloudError:
             return {"code": 500, "msg": "no announcement found", "id": None, "announcement": None}
         if result:
-            global previous
             previous = data = {
                 'code': 200,
                 'msg': 'success',
