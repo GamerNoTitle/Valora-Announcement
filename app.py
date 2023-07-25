@@ -54,7 +54,7 @@ def index():
             }
         except LeanCloudError:
             pass
-    return render_template('index.html', lang=yaml.load(transtable, Loader=yaml.FullLoader), prev_ann = data)
+    return render_template('index.html', lang=yaml.load(transtable, Loader=yaml.FullLoader), prev_ann = previous)
 
 @app.route('/api/time')
 def time():
