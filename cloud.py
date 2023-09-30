@@ -3,6 +3,9 @@ import os
 
 leancloud.init(os.environ.get('LEANCLOUD_APP_ID', '404'), os.environ.get('LEANCLOUD_APP_KEY', '404'))
 
+engine = leancloud.Engine()
+
+@leancloud.Engine.define
 def query_to_keep_unarchive():
     Announcement: leancloud.Object = leancloud.Object.extend('announcement')
     query = Announcement.query
