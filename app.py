@@ -152,6 +152,17 @@ def get_api():
         return previous
     return {'code': 500, 'msg': 'no announcement found', 'id': None, 'announcement': None}
 
+@app.route('/api/noarchive')
+def query_to_keep_unarchive():
+    Announcement: leancloud.Object = leancloud.Object.extend('announcement')
+    query = Announcement.query
+    query.limit(1)  # 限制只获取一条数据
+    query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
+    query.not_equal_to('en', '')
+    result = query.first()
+    return "200"
+
+
 
 @ app.route('/assets/<path:filename>')
 def serve_static(filename):
@@ -164,12 +175,4 @@ def python_version():
     return jsonify({"python-version": sys.version})
 
 if __name__ == '__main__':
-    engine = leancloud.Engine()
-    @leancloud.Engine.define
-    def query_to_keep_unarchive():
-        Announcement: leancloud.Object = leancloud.Object.extend('announcement')
-        query = Announcement.query
-        query.limit(1)  # 限制只获取一条数据
-        query.descending('createdAt')  # 按照 createdAt 降序排列，即获取最新的一条数据
-        query.not_equal_to('en', '')
     app.run('0.0.0.0', 8080, debug=0)
