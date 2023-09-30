@@ -60,6 +60,10 @@ You need to add a new variable named `ANNOUNCEMENT` to your app. The value shoul
 
 You should access to your VAMS and add the announcement manually. This step needs a token verification. Make sure your token is **STRONG ENOUGH**, or this may cause XSS attack in your Valora(Valora uses safe tag when rendering template with Jinja2).
 
+### Step 7: Add cron to avoid being archived
+
+You need to open cron tab, and add a new cron job. The name can be filled what you like, target should be `HTTP`, and use `GET` to access `/api/noarchive`, cron time should fill `0 8-23 * * *` or what you like if you know what's this meaning. After all, save it.
+
 ## 简体中文
 
 本项目是专属于[Valora](https://github.com/GamerNoTitle/Valora)的公告系统，主要是为了在不需要重新部署Valora的情况下轻松更新公告，正因如此，我做了这个系统
@@ -112,3 +116,7 @@ Valora-Announcement（下面简称VAMS，为Valora-Announcement-Management-Syste
 ### 第六步：添加新的公告
 
 你需要访问你的应用页面，然后在页面中添加你的新公告；这个过程中需要Token来鉴权，所以请**确保你的Token很复杂**，要不然可能会造成XSS攻击（Valora在渲染公告的时候选择了Jinja2的safe标签）
+
+### 第七步：添加定时任务以免无API访问导致应用被归档
+
+你需要到云函数的定时任务页面，添加一个定时任务，名字随便填，运行目标选择`HTTP`，使用`GET`请求访问`/api/noarchive`，cron表达式填`0 8-23 * * *`，保存即可
